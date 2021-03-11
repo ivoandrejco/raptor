@@ -1,0 +1,1284 @@
+{
+  "medications": [
+    {
+      "name": "Rosuvastatin",
+      "dose": "10 mg",
+      "frequency": "mane",
+      "comment": "",
+      "id": "SqAYXTRTHQ-QCsffTjemi",
+      "pid": "CW1-RtXBT1sq-CRZp05bH"
+    },
+    {
+      "name": "Ventolin",
+      "dose": "",
+      "frequency": "",
+      "comment": "",
+      "id": "gET-o8yNQ4paEXYrtHpZA",
+      "pid": "Y_CsIukDEgB-_w5-HD2gj"
+    },
+    {
+      "name": "Breo Ellipta",
+      "dose": "",
+      "frequency": "",
+      "comment": "",
+      "id": "fF0UjqZdZAQIL9h4swsWz",
+      "pid": "Y_CsIukDEgB-_w5-HD2gj"
+    },
+    {
+      "name": "Metoprolol",
+      "dose": "25 mg ",
+      "frequency": "bd",
+      "comment": "",
+      "id": "99--MOzQZF09sGANVw4m0",
+      "pid": "cDlKM_-xor3lLLGTsL8xK"
+    },
+    {
+      "name": "Escitalopram",
+      "dose": "10 mg ",
+      "frequency": "daily",
+      "comment": "",
+      "id": "SZ2rh-doPla2ZoNC1nR9Z",
+      "pid": "cDlKM_-xor3lLLGTsL8xK"
+    },
+    {
+      "name": "Telmisartan",
+      "dose": "80 mg",
+      "frequency": "daily",
+      "comment": "",
+      "id": "7UwmvbC5viloIs9jzGSqb",
+      "pid": "cDlKM_-xor3lLLGTsL8xK"
+    },
+    {
+      "name": "Rosuvastatin",
+      "dose": "10 mg",
+      "frequency": "nocte",
+      "comment": "",
+      "id": "Q8t9jL-BiJehzET-0mvRS",
+      "pid": "mKLhzp2__d7RSAdK1Y9VW"
+    },
+    {
+      "name": "Ramipril",
+      "dose": "10 mg",
+      "frequency": "nocte",
+      "comment": "",
+      "id": "K5TLGT292IFtsO8hn-6gD",
+      "pid": "mKLhzp2__d7RSAdK1Y9VW"
+    }
+  ],
+  "allergies": [
+    {
+      "name": "Rosuvastatin",
+      "reaction": "Muscle aches",
+      "id": "QbvGCTko9ntK2eZaIxsWm",
+      "pid": "mKLhzp2__d7RSAdK1Y9VW"
+    }
+  ],
+  "comorbidities": [
+    {
+      "name": "Diabetes mellitus type 2",
+      "comment": "HbA1c 7.5%",
+      "id": "Q2N4v4FLY8DMvcVZRxKjx",
+      "pid": "c35A3Q93AEsdL77TlL1cU"
+    },
+    {
+      "name": "Diabetes mellitus type 2",
+      "comment": "HbA1c 6%",
+      "id": "crwgW2Btgh8wuAJMQfLQQ",
+      "pid": "CW1-RtXBT1sq-CRZp05bH"
+    },
+    {
+      "name": "Central obesity",
+      "comment": "",
+      "id": "6LwQodA6BoDWj_tlvfb0F",
+      "pid": "kUD8BCPvkFw-FdLOGUQYJ"
+    },
+    {
+      "name": "Asthma",
+      "comment": "",
+      "id": "niK53oen1kNxxnl8NDTJd",
+      "pid": "Y_CsIukDEgB-_w5-HD2gj"
+    },
+    {
+      "name": "Iron deficiency anaemia",
+      "comment": "",
+      "id": "NNztJz4l9AUsRspekcUpp",
+      "pid": "Y_CsIukDEgB-_w5-HD2gj"
+    },
+    {
+      "name": "Uterine Fibroid",
+      "comment": "",
+      "id": "1L1cCwPIuiicjhAebcfXi",
+      "pid": "Y_CsIukDEgB-_w5-HD2gj"
+    },
+    {
+      "name": "Obesity",
+      "comment": "",
+      "id": "WnOiigwFBEC3bOab6QSTs",
+      "pid": "Y_CsIukDEgB-_w5-HD2gj"
+    },
+    {
+      "name": "Insomnia",
+      "comment": "",
+      "id": "4AoL50eluEYlYYoiPuBhi",
+      "pid": "Y_CsIukDEgB-_w5-HD2gj"
+    },
+    {
+      "name": "Dilated Ascending Aorta",
+      "comment": "",
+      "id": "nmP_72Lq2Ho8iDKOJDmqK",
+      "pid": "cDlKM_-xor3lLLGTsL8xK"
+    },
+    {
+      "name": "Obstructive sleep apnoea",
+      "comment": "",
+      "id": "mxIaj4-Hnj5B539BI4hnV",
+      "pid": "cDlKM_-xor3lLLGTsL8xK"
+    },
+    {
+      "name": "GORD",
+      "comment": "",
+      "id": "0MlFRZgiWTofcDoqmQp4n",
+      "pid": "cDlKM_-xor3lLLGTsL8xK"
+    },
+    {
+      "name": "Diabetes mellitus type 1",
+      "comment": "HbA1c 7.5%",
+      "id": "bat4gY1IOdBrRmsZebCd6",
+      "pid": "mKLhzp2__d7RSAdK1Y9VW"
+    },
+    {
+      "name": "Hypertension",
+      "comment": "",
+      "id": "CvY_LPmFtiay0UQNlBZah",
+      "pid": "mKLhzp2__d7RSAdK1Y9VW"
+    },
+    {
+      "name": "Osteoporosis",
+      "comment": "T7 crush fractures",
+      "id": "TxPFibbJdDsGRFgDRlV8T",
+      "pid": "mKLhzp2__d7RSAdK1Y9VW"
+    }
+  ],
+  "templates": [
+    {
+      "name": "Neutropenia",
+      "id": 1
+    },
+    {
+      "name": "Neutrophilia",
+      "id": 2
+    }
+  ],
+  "socialhx": [
+    {
+      "living": "alone",
+      "working": " retired RN",
+      "smoking": "",
+      "drinking": "",
+      "children": "",
+      "family": "",
+      "travel": "",
+      "other": "",
+      "template_value": "lives alone,  retired RN",
+      "template": "lives {{living}}, {{working}}",
+      "id": "5EdZJlPIPhIbOAErZB2Il",
+      "pid": "5LaHsDU5hQ_zkJTJgBigk"
+    },
+    {
+      "living": "alone",
+      "working": " retired civil engineer",
+      "smoking": "",
+      "drinking": "",
+      "children": "",
+      "family": "",
+      "travel": "",
+      "other": "",
+      "template": "lives {{living}}, children: {{children}}, {{working}}, smoking: {{smoking}}, alcohol: {{drinking}}, family hx: {{family}}, {{#if other}}other: {{other}}{{/if}}",
+      "template_value": "",
+      "id": "LY0b90QZASBZAAnpDvNgl",
+      "pid": "KGSCPZ6SvEfpSkmUVEJQx"
+    },
+    {
+      "living": "alone",
+      "working": " retired civil engineer",
+      "smoking": " quit 5 months ago",
+      "drinking": " social ",
+      "children": " 8 healthy",
+      "family": "",
+      "travel": "",
+      "other": "",
+      "template": "lives {{living}}, children: {{children}}, {{working}}, smoking: {{smoking}}, alcohol: {{drinking}}, family hx: {{family}}, {{#if other}}other: {{other}}{{/if}}",
+      "template_value": "",
+      "id": "J4VL-a5cUkiEDtn-Bz1HP",
+      "pid": "KGSCPZ6SvEfpSkmUVEJQx"
+    },
+    {
+      "living": "alone",
+      "working": " retired civil engineer",
+      "smoking": " quit 5 months ago",
+      "drinking": " social ",
+      "children": " 8 healthy",
+      "family": "",
+      "travel": "",
+      "other": "",
+      "template": "lives {{living}}, children: {{children}}, {{working}}, smoking: {{smoking}}, alcohol: {{drinking}}, family hx: {{family}}, {{#if other}}other: {{other}}{{/if}}",
+      "template_value": "",
+      "id": "7wOu7Orz5NBsNGd7YaGEk",
+      "pid": "KGSCPZ6SvEfpSkmUVEJQx"
+    },
+    {
+      "living": "alone",
+      "working": " paediatrician",
+      "smoking": " quit 5 months ago",
+      "drinking": " social ",
+      "children": "",
+      "family": "",
+      "travel": "",
+      "other": "",
+      "template": "lives {{living}}, children: {{children}}, {{working}}, smoking: {{smoking}}, alcohol: {{drinking}}, family hx: {{family}}, {{#if other}}other: {{other}}{{/if}}",
+      "template_value": "",
+      "id": "ei6vzbqgJEhh5o5BmXlwR",
+      "pid": "Y_CsIukDEgB-_w5-HD2gj"
+    },
+    {
+      "living": "alone",
+      "working": " retired civil engineer",
+      "smoking": " quit 5 months ago",
+      "drinking": "",
+      "children": " 8 healthy",
+      "family": " nil significant",
+      "travel": "nil ",
+      "other": "",
+      "template": "lives {{living}}, children: {{children}}, {{working}}, smoking: {{smoking}}, alcohol: {{drinking}}, family hx: {{family}}, {{#if other}}other: {{other}}{{/if}}",
+      "template_value": "lives alone, children:  8 healthy,  retired civil engineer, smoking:  quit 5 months ago, alcohol: , family hx:  nil significant, ",
+      "id": "G1deGryYnzXMpdQqUFwUV",
+      "pid": "mKLhzp2__d7RSAdK1Y9VW"
+    }
+  ],
+  "patients": [
+    {
+      "fname": "Cecilia",
+      "lname": "Lea",
+      "dob": "15-May-1954",
+      "gender": "Female",
+      "id": "5LaHsDU5hQ_zkJTJgBigk",
+      "created": "2020-12-16T03:19:40.186Z",
+      "last_visit": "2020-12-16T06:50:14.807Z"
+    },
+    {
+      "fname": "Aleena",
+      "lname": "Van Helden",
+      "dob": "16-Dec-2005",
+      "gender": "Female",
+      "id": "15n0I54WFnOstt8vDJ5Xb",
+      "created": "2020-12-16T03:19:36.602Z",
+      "last_visit": "2020-12-16T06:51:06.508Z"
+    },
+    {
+      "fname": "Tania",
+      "lname": "Brady",
+      "dob": "19-Oct-1971",
+      "gender": "Female",
+      "id": "Y_CsIukDEgB-_w5-HD2gj",
+      "created": "2020-12-16T03:19:28.861Z",
+      "last_visit": "2020-12-16T06:51:09.979Z"
+    },
+    {
+      "fname": "Samantha",
+      "lname": "Defrancesco",
+      "dob": "30-Dec-1987",
+      "gender": "Female",
+      "id": "i-DY1TUWy8iDuhhrVwp8d",
+      "created": "2020-12-16T03:19:18.495Z",
+      "last_visit": "2020-12-16T06:51:13.447Z"
+    },
+    {
+      "fname": "Raymond",
+      "lname": "Stilp",
+      "dob": "13-Aug-1968",
+      "gender": "Male",
+      "id": "mKLhzp2__d7RSAdK1Y9VW",
+      "created": "2020-12-16T04:10:53.144Z",
+      "last_visit": "2020-12-16T06:51:16.927Z"
+    },
+    {
+      "fname": "Deirdre",
+      "lname": "Carey",
+      "dob": "11-Jun-1944",
+      "gender": "Female",
+      "id": "KGSCPZ6SvEfpSkmUVEJQx",
+      "created": "2020-12-16T04:11:16.056Z",
+      "last_visit": "2020-12-16T06:51:20.218Z"
+    },
+    {
+      "fname": "Sarah",
+      "lname": "Cranitch",
+      "dob": "18-Jul-1974",
+      "gender": "Female",
+      "id": "8rOURNxA7CS2wV34shiwJ",
+      "created": "2020-12-16T06:09:22.641Z",
+      "last_visit": "2020-12-16T06:51:24.161Z"
+    },
+    {
+      "fname": "Julie",
+      "lname": "Cross",
+      "dob": "10-Apr-1968",
+      "gender": "Female",
+      "id": "U1uAuhiXV1Pm__FAQKAli",
+      "created": "2020-12-16T06:10:38.459Z",
+      "last_visit": "2020-12-16T06:51:28.095Z"
+    },
+    {
+      "fname": "Tudor",
+      "lname": "Young",
+      "dob": "11-Jul-1952",
+      "gender": "Male",
+      "id": "wK9Kvv2Z6DXhLOJ9uPeu8",
+      "created": "2020-12-16T06:31:46.912Z",
+      "last_visit": "2020-12-16T06:51:32.055Z"
+    },
+    {
+      "fname": "Kotevska",
+      "lname": "Jasmina",
+      "dob": "06-Jan-1976",
+      "gender": "Female",
+      "id": "dY_PFGW7Iv-85QdXJHulL",
+      "created": "2020-12-16T06:46:47.180Z",
+      "last_visit": "2020-12-16T06:51:37.571Z"
+    },
+    {
+      "fname": "Toni",
+      "lname": "Nedeski",
+      "dob": "11-Nov-1973",
+      "gender": "Male",
+      "last_visit": "2020-12-16T07:51:23.955Z",
+      "id": "cDlKM_-xor3lLLGTsL8xK",
+      "created": "2020-12-16T07:51:23.955Z"
+    },
+    {
+      "fname": "Kieran",
+      "lname": "Norwood",
+      "dob": "15-May-1992",
+      "gender": "Male",
+      "last_visit": "2020-12-16T07:52:09.209Z",
+      "id": "DicIYZJY68ylGUI1uGbXj",
+      "created": "2020-12-16T07:52:09.209Z"
+    },
+    {
+      "fname": "Brian",
+      "lname": "Wicken",
+      "dob": "27-May-1971",
+      "gender": "Male",
+      "last_visit": "2020-12-16T10:29:30.123Z",
+      "id": "zb_dsDdn4FUgjeC_fzfBh",
+      "created": "2020-12-16T10:29:30.123Z"
+    },
+    {
+      "fname": "Helen",
+      "lname": "Roberts",
+      "dob": "30-Jun-1938",
+      "gender": "Female",
+      "last_visit": "2020-12-16T10:30:08.712Z",
+      "id": "xJX1Xz4cua7kuq1K0eEcs",
+      "created": "2020-12-16T10:30:08.712Z"
+    },
+    {
+      "fname": "Penny",
+      "lname": "Murchie",
+      "dob": "13-Oct-1945",
+      "gender": "Female",
+      "last_visit": "2020-12-16T10:30:37.382Z",
+      "id": "8vH7cbkSpu5BD2uEL2Ct0",
+      "created": "2020-12-16T10:30:37.382Z"
+    },
+    {
+      "fname": "Eileen",
+      "lname": "Semaan",
+      "dob": "03-Jan-1979",
+      "gender": "Female",
+      "last_visit": "2020-12-16T10:47:17.578Z",
+      "id": "HCmwaHZL1tO3BCTywczrL",
+      "created": "2020-12-16T10:47:17.578Z"
+    },
+    {
+      "fname": "Kobi",
+      "lname": "Adam",
+      "dob": "22-Feb-2003",
+      "gender": "Female",
+      "last_visit": "2020-12-16T10:52:48.101Z",
+      "id": "R-bkGnxnObCIxY1n3E_qa",
+      "created": "2020-12-16T10:52:48.101Z"
+    },
+    {
+      "fname": "Peter",
+      "lname": "Lean",
+      "dob": "07-Oct-1951",
+      "gender": "Male",
+      "last_visit": "2020-12-16T10:53:34.404Z",
+      "id": "e3QvodIpxRqPWqIHuzHuZ",
+      "created": "2020-12-16T10:53:34.404Z"
+    },
+    {
+      "fname": "Dianna",
+      "lname": "Woods-Gould",
+      "dob": "10-Nov-1969",
+      "gender": "Female",
+      "last_visit": "2020-12-16T10:58:09.263Z",
+      "id": "3Yo5O1r_agKbLMtFVomhz",
+      "created": "2020-12-16T10:58:09.263Z"
+    },
+    {
+      "fname": "Barbara",
+      "lname": "Schulte",
+      "dob": "23-Aug-1954",
+      "gender": "Female",
+      "last_visit": "2020-12-16T11:11:05.182Z",
+      "id": "CEpnVnV1QEFEzW-gxb_MU",
+      "created": "2020-12-16T11:11:05.182Z"
+    },
+    {
+      "fname": "Lili",
+      "lname": "Van Duin",
+      "dob": "22-Jun-2000",
+      "gender": "Female",
+      "last_visit": "2020-12-16T11:18:23.735Z",
+      "id": "YJoRx0E_vCofxlgsKM0Rg",
+      "created": "2020-12-16T11:18:23.735Z"
+    }
+  ],
+  "consultations": [
+    {
+      "cIssues": ["Neutropenia"],
+      "cDate": "12/12/2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": true,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": false,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": true,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": false,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "fatigue": "Yes",
+      "weight_loss": "No",
+      "skin_rash": "Yes",
+      "joint_swelling": "No",
+      "weight_loss_comment": "15 kg over 6 months",
+      "id": "9Rijzo0VHgjWZBJtZZjaL",
+      "pid": "KONGN0mev2ok0wYvgQAm3"
+    },
+    {
+      "cIssues": [{
+        "name":"Neutropenia"
+      }],
+      "cDate": "12/12/2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": false,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": false,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": false,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": false,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "fatigue": "No",
+      "weight_loss": "No",
+      "skin_rash": "No",
+      "joint_swelling": "No",
+      "id": "FLdkWHTLXe22FSu-J3CMQ",
+      "pid": "KONGN0mev2ok0wYvgQAm3"
+    },
+    {
+      "cIssues": [{ "name":"Thrombocytosis"}],
+      "cDate": "12/12/2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": false,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": false,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": false,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": false,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "fatigue": "No",
+      "weight_loss": "No",
+      "skin_rash": "No",
+      "joint_swelling": "No",
+      "id": "AMBqYZcVQypq7Sn2JVlmo",
+      "pid": "CW1-RtXBT1sq-CRZp05bH"
+    },
+    {
+      "cIssues": [{"name":"Iron deficiency"}],
+      "cDate": "16-Dec-2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": true,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": false,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "fatigue": "Yes",
+      "id": "Y5eY6IX0ylNnO12L5JZCl",
+      "pid": "15n0I54WFnOstt8vDJ5Xb"
+    },
+    {
+      "cIssue": "Iron deficiency anaemia",
+      "cDate": "16-Dec-2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": true,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": false,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "fatigue": "Yes",
+      "id": "mNxrJ1PRk4Z80IYBFw9aB",
+      "pid": "Y_CsIukDEgB-_w5-HD2gj"
+    },
+    {
+      "cIssue": "Iron deficiency anaemia",
+      "cDate": "16-Dec-2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": true,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": false,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "fatigue": "Yes",
+      "id": "YpIN5tT98owqTBYhIeuPf",
+      "pid": "i-DY1TUWy8iDuhhrVwp8d"
+    },
+    {
+      "cIssue": "Macrocytic anaemia",
+      "cDate": "16-Dec-2020",
+      "cType": "116",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "id": "4mX5UYWpyshgGQZiSeX16",
+      "pid": "mKLhzp2__d7RSAdK1Y9VW"
+    },
+    {
+      "cIssue": "Macrocytic anaemia",
+      "cDate": "16-Dec-2020",
+      "cType": "116",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "id": "Gv12BAkIyUqfPOT5k7Ibv",
+      "pid": "KGSCPZ6SvEfpSkmUVEJQx"
+    },
+    {
+      "cIssue": "B12 deficiency / Iron deficiency anaemia",
+      "cDate": "16-Dec-2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "id": "WdrfegUzCC8_Id4XrLKH7",
+      "pid": "8rOURNxA7CS2wV34shiwJ"
+    },
+    {
+      "cIssue": "Iron deficiency",
+      "cDate": "16-Dec-2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "id": "bnBMiO-zaFvgOFocDyDqa",
+      "pid": "5LaHsDU5hQ_zkJTJgBigk"
+    },
+    {
+      "cIssue": "Lymphocytosis",
+      "cDate": "16-Dec-2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "id": "Y2bvlDxwJtuZx3z9czWxS",
+      "pid": "cDlKM_-xor3lLLGTsL8xK"
+    },
+    {
+      "cIssue": "Iron deficiency",
+      "cDate": "16-Dec-2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "id": "Bs_YVbFjSkSQ32a1TMHox",
+      "pid": "DicIYZJY68ylGUI1uGbXj"
+    },
+    {
+      "cIssue": "Iron deficiency",
+      "cDate": "16-Dec-2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "id": "WBdLlxwNNsdC1BL2-KG4c",
+      "pid": "dY_PFGW7Iv-85QdXJHulL"
+    },
+    {
+      "cIssue": "Chronic lymphocytic leukemia",
+      "cDate": "16-Dec-2020",
+      "cType": "116",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "id": "WrzA9gP-DL-7OMo-_O-Hh",
+      "pid": "wK9Kvv2Z6DXhLOJ9uPeu8"
+    },
+    {
+      "cIssue": "Lymphocytosis",
+      "cDate": "16-Dec-2020",
+      "cType": "110",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "id": "UWLKbIXOjPqLlpWT589Zx",
+      "pid": "U1uAuhiXV1Pm__FAQKAli"
+    },
+    {
+      "cIssue": "T-cell large granular leukaemia",
+      "cDate": "16-Dec-2020",
+      "cType": "116",
+      "template": {
+        "name": "Neutropenia",
+        "systems": [
+          {
+            "name": "Constitutional symptoms",
+            "symptoms": [
+              {
+                "id": "fatigue",
+                "name": "Fatigue",
+                "tip": "",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "weight_loss",
+                "name": "Weight loss",
+                "tip": "how much over how long",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          },
+          {
+            "name": "Rheumatological symptoms",
+            "symptoms": [
+              {
+                "id": "skin_rash",
+                "name": "Skin rash",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              },
+              {
+                "id": "joint_swelling",
+                "name": "Joint issues",
+                "tip": "photosensitivity, distribution",
+                "value": null,
+                "comment": ""
+              }
+            ]
+          }
+        ]
+      },
+      "id": "cW5uOMKw7BSut6w7lOcgo",
+      "pid": "8vH7cbkSpu5BD2uEL2Ct0"
+    },
+    {
+      "cDate": "Sat Dec 16 2020 12:21:44 GMT+1100 (Australian Eastern Daylight Time)",
+      "cType": "110",
+      "cIssues": [],
+      "id": "ToyKQksn_lhlQca6r_ULV",
+      "pid": "YJoRx0E_vCofxlgsKM0Rg"
+    },
+    {
+      "cDate": "2020-12-19T12:45:35.339Z",
+      "cType": "110",
+      "cIssues": [],
+      "id": "7jHZ7jzONUCDZQRwFDC3b",
+      "pid": "mKLhzp2__d7RSAdK1Y9VW",
+      "issues": []
+    }
+  ]
+}
