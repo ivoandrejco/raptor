@@ -84,7 +84,7 @@ const consultationsSlice = createSlice({
       state.allByPid[meta.arg] = payload
     },
     [fetchConsultation.fulfilled]: (state,{payload,meta}) => {
-      state.allByPid[payload.pid.id] = state.allByPid[payload.pid.id].map( c => {
+      state.allByPid[payload.patient.id] = state.allByPid[payload.patient.id].map( c => {
         if(c.id === payload.id)
           return payload
         return c
@@ -97,16 +97,16 @@ const consultationsSlice = createSlice({
       state.loading = false
     },
     [createConsultation.fulfilled]: (state,{payload}) => {
-      if(!state.allByPid[payload.pid.id]){
-        state.allByPid[payload.pid.id] = []
+      if(!state.allByPid[payload.patient.id]){
+        state.allByPid[payload.patient.id] = []
       }
       state.activeConsultation = payload
       state.all.unshift(payload)
-      state.allByPid[payload.pid.id].push(payload)
+      state.allByPid[payload.patient.id].push(payload)
     },
     [createConsultation.rejected]: (state,{payload}) => { console.error(payload) },
     [updateConsultation.fulfilled]: (state,{payload}) => {
-      state.allByPid[payload.pid.id] = state.allByPid[payload.pid.id].map( c => {
+      state.allByPid[payload.patient.id] = state.allByPid[payload.patient.id].map( c => {
         if(c.id === payload.id)
           return payload
         return c
@@ -122,8 +122,8 @@ const consultationsSlice = createSlice({
       console.error(payload.response.data)
     },
     [deleteConsultation.fulfilled]: (state,{meta}) => {
-      if(state.allByPid[meta.arg.pid.id])
-        state.allByPid[meta.arg.pid.id] = state.allByPid[meta.arg.pid.id].filter( p => p.id !== meta.arg.id)
+      if(state.allByPid[meta.arg.patient.id])
+        state.allByPid[meta.arg.patient.id] = state.allByPid[meta.arg.patient.id].filter( p => p.id !== meta.arg.id)
       state.all = state.all.filter( p => p.id !== meta.arg.id)
     }
   }

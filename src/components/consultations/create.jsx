@@ -13,35 +13,26 @@ import { fetchProviderNumbers } from '../../redux/slices/billings'
 
 // FIELDS
 const fields = {
-  code:     { type: 'input',  label: "Code", value: " "},
-  provider: { type: 'select', label: 'Provider', options: [{value:" ",name: "Select Provider"}]},
-  weight:     { type: 'input',  label: "Weight" },
-  height:     { type: 'input',  label: "Height" },
-  BP:           { type: 'input', label: "Blood pressure"},
-  pulse:        { type: 'input', label: "Pulse"},
-  examination:  { type: 'textarea',  label: "Examination", value: " " },
-  presentation:  { type: 'textarea',  label: "Presentation", value: " " },
-  plan:         { type: 'textarea',  label: "Plan", value: " " },
-//  conclusion:  { type: 'textarea',  label: "Conclusion", value: " ", rows: "10" },
+  code:       { type: 'input',    label: "Code", value: " "},
+  provider:   { type: 'select',   label: 'Provider', options: [{value:" ",name: "Select Provider"}]},
+  history:    { type: 'textarea', label: "History", value: " " },
+  impression: { type: 'textarea', label: "Impression", value: " " },
+  plan:       { type: 'textarea', label: "Plan", value: " " },
 }
 
 const initialValues = {
-  code:     110, 
-  provider: ' ',
-  weight: ' ',
-  height: ' ',
-  bpressure: ' ',
-  pulse: " bpm regular",
-  presentation: ' ',
-//  conclusion:  ' ',
-  plan: '',
-  examination: `heart sounds are dual with no audible murmurs; chest is clear; abdomen is distended, soft and non-tender with no palpable masses, liver or spleen; no palpable lymphadenopathy; no obvious mucocutaneous lesions, excessive bruising or bleeding; no bone tenderness or joint swellings`
+  code:       110, 
+  provider:   ' ',
+  history:    ' ',
+  impression: ' ',
+  plan:       '',
 }
 
 const validationSchema = Yup.object({
-  code:     Yup.number().required(),
-  examination:  Yup.string().nullable(),
-  conclusion:  Yup.string(),
+  code:       Yup.number().required(),
+  history:    Yup.string().required(),
+  impression: Yup.string(),
+  plan:       Yup.string().required(),
 })
 
 
@@ -64,13 +55,13 @@ export const ConsultationCreate = () => {
   }, [id])
 
   const formik        = useFormik({
-    initialValues:    initialValues,
-    validationSchema: validationSchema,
+    initialValues:      {...initialValues},
+    validationSchema:   validationSchema,
     enableReinitialize: true,
   })
 
   // EVENT HANDLERS
-  const handleSubmit = (values) => { values['pid'] = id; return dispatch(createConsultation(values)).then(unwrapResult) }
+  const handleSubmit = (values) => { values['patient'] = id; return dispatch(createConsultation(values)).then(unwrapResult) }
   const handleClose = (href=`/patients/patient/${id}/`) => {
     history.push(href)
   }
