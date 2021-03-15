@@ -5,7 +5,7 @@ import {unwrapResult} from '@reduxjs/toolkit'
 import {useFormik} from 'formik'
 import * as Yup from 'yup'
 
-import { createExamination, fetchExamination, updateExamination } from '../../redux/slices/examinations'
+//import { createExamination, fetchExamination, updateExamination } from '../../redux/slices/examinations'
 import { GenericForm, getCreateButtons, getUpdateButtons } from '../form'
 import { MsgBox } from '../utils'
 
@@ -21,6 +21,13 @@ const fields = {
   sats_desc:    { type: 'input',    label: "Saturations Description"},
   examination:  { type: 'textarea', label: "Examination", value: " " },
 }
+
+const layout = [
+  [fields.weight,fields.height],
+  [fields.BP,fields.pulse,fields.pulse_desc],
+  [fields.temp,fields.sats,fields.sats_desc],
+  [fields.examination]
+]
 
 const initialValues = {
   weight: 0,
@@ -56,7 +63,7 @@ export const ExaminationCreate = () => {
   // EVENT HANDLERS
   const handleSubmit = (values) => { 
     values['pid'] = id; 
-    return dispatch(createExamination(values)).then(unwrapResult) 
+    //return dispatch(createExamination(values)).then(unwrapResult) 
   }
 
   const handleClose = (href=`/patients/patient/${id}/`) => {

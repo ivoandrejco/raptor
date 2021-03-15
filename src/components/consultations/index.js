@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 
 import { ConsultationCreate, ConsultationUpdate } from './create'
+import { ExaminationCreate } from '../examination/create'
 import { fetchConsultationsByPid, deleteConsultation, setActiveConsultation } from '../../redux/slices/consultations'
 import { setActiveIssue } from '../../redux/slices/issues'
 import { IssueDeleteDialog, IssueDialog } from '../issues'
@@ -39,7 +40,7 @@ export const ConsultationCreateContainer = () => {
         <ConsultationCreate />
       </Col>
       <Col>
-        <ConsultationList consultations={consultations}/>
+        <ExaminationCreate />
       </Col>
     </Row>
   )

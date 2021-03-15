@@ -84,7 +84,8 @@ const patientsSlice = createSlice({
       state.activePatient = action.payload
     },
     [fetchPatient.rejected]: (state,action) => console.log(`fetchPatient rejected: ${JSON.stringify(action)}`),
-    [fetchPatients.pending]: (state,action) => { state.loading = true},
+    [fetchPatients.rejected]: (state,action) => { state.loading = false },
+    [fetchPatients.pending]: (state,action) => { state.loading = true },
     [fetchPatients.fulfilled]: (state,{payload}) => {
       state.all     = payload
       state.loading = false
