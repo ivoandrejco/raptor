@@ -7,19 +7,20 @@ import * as Yup from 'yup'
 
 //import { createExamination, fetchExamination, updateExamination } from '../../redux/slices/examinations'
 import { GenericForm, getCreateButtons, getUpdateButtons } from '../form'
+import { LayoutForm } from '../forms'
 import { MsgBox } from '../utils'
 
 // FIELDS
 const fields = {
-  weight:       { type: 'input',    label: "Weight", value: 0 },
-  height:       { type: 'input',    label: "Height", value: 0 },
-  BP:           { type: 'input',    label: "Blood pressure"},
-  pulse:        { type: 'input',    label: "Pulse"},
-  pulse_desc:   { type: 'input',    label: "Pulse Description"},
-  temp:         { type: 'input',    label: "Temperature"},
-  sats:         { type: 'input',    label: "Saturations"},
-  sats_desc:    { type: 'input',    label: "Saturations Description"},
-  examination:  { type: 'textarea', label: "Examination", value: " " },
+  weight:       { type: 'input',  name: 'weight',  label: "Weight", value: 0 },
+  height:       { type: 'input',  name: 'height',  label: "Height", value: 0 },
+  BP:           { type: 'input',  name: 'BP',      label: "Blood pressure", value: ' '},
+  pulse:        { type: 'input',  name: 'pulse',   label: "Pulse", value: 72},
+  pulse_desc:   { type: 'input',  name: 'pulse_desc',  label: "Pulse Description", value: 'bpm'},
+  temp:         { type: 'input',  name: 'temp',  label: "Temperature", value: 36.5},
+  sats:         { type: 'input',  name: 'sats',    label: "Saturations", value: 0},
+  sats_desc:    { type: 'input',  name: 'sats_desc',    label: "Saturations Description", value: ''},
+  examination:  { type: 'textarea', name: 'examination',  label: "Examination", value: `heart sounds are dual with no audible murmurs; chest is clear; abdomen is distended, soft and non-tender with no palpable masses, liver or spleen; no palpable lymphadenopathy; no obvious mucocutaneous lesions, excessive bruising or bleeding; no bone tenderness or joint swellings` },
 }
 
 const layout = [
@@ -83,7 +84,7 @@ export const ExaminationCreate = () => {
     <Fragment>
       <h5>New Examination</h5>
       <MsgBox msg={msg} />
-      <GenericForm formik={formik} fields={fields} buttons={buttons} />
+      <LayoutForm formik={formik} fields={layout} buttons={buttons} />
     </Fragment>  
   )
 }
