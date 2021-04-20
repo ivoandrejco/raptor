@@ -1,136 +1,135 @@
-import React, { Fragment, useEffect } from 'react'
-import {Container, Col,Row} from 'react-bootstrap'
-import {Route,Link,useParams} from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
+import React, { useEffect } from "react";
+import { Container, Col, Row } from "react-bootstrap";
+import { Route, Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
+import { PatientUpdate } from "./create";
 
-import {PatientUpdate} from './create';
+import {
+  AllergySnippet,
+  AllergyCreateContainer,
+  AllergyUpdateContainer,
+} from "../allergies";
 
-import { 
-  AllergySnippet, 
-  AllergyCreateContainer, 
-  AllergyUpdateContainer } 
-  from '../allergies'
-
-import { 
-  ComorbiditySnippet, 
-  ComorbidityCreateContainer, 
-  ComorbidityUpdateContainer 
-} from '../comorbidities'
+import {
+  ComorbiditySnippet,
+  ComorbidityCreateContainer,
+  ComorbidityUpdateContainer,
+} from "../comorbidities";
 
 import {
   MedicationSnippet,
   MedicationCreateContainer,
-  MedicationUpdateContainer
-} from '../medications'
+  MedicationUpdateContainer,
+} from "../medications";
 
 import {
   TaskSnippet,
   TaskCreateContainer,
-  TaskUpdateContainer
-} from '../tasks'
+  TaskUpdateContainer,
+} from "../tasks";
 
 import {
   ConsultationSnippet,
   ConsultationCreateContainer,
-  ConsultationUpdateContainer
-} from '../consultations'
+  ConsultationUpdateContainer,
+} from "../consultations";
+
+import { SocialHxSnippet, SocialHxCreate, SocialHxUpdate } from "../socialhx";
 
 import {
-  SocialHxSnippet,
-  SocialHxCreate,
-  SocialHxUpdate,
-} from '../socialhx'
+  ExaminationCreateContainer,
+  ExaminationUpdateContainer,
+} from "../examination";
 
 import {
-  IssueCreateContainer,
-  IssueUpdateContainer
-} from '../issues'
-
-import {
-  LetterView, 
+  LetterView,
   LetterCreateContainer,
-  LetterUpdateContainer
-} from '../letters'
-import {LetterCreatePreview } from '../letters/create'
+  LetterUpdateContainer,
+} from "../letters";
+import { LetterCreatePreview } from "../letters/create";
 
 import {
   DiagnosisSnippet,
   DiagnosisCreateContainer,
-  DiagnosisUpdateContainer
-} from '../diagnoses'
+  DiagnosisUpdateContainer,
+} from "../diagnoses";
 
-import { 
+import {
   InvestigationCreateContainer,
   InvestigationUpdateContainer,
-} from '../investigations';
+} from "../investigations";
 
-import { fetchPatient } from '../../redux/slices/patients'
-import { fetchConsultationsByPid } from '../../redux/slices/consultations'
-import { fetchMedicationsByPid } from '../../redux/slices/medications'
-import { fetchComorbiditiesByPid } from '../../redux/slices/comorbidities'
-import { fetchAllergiesByPid } from '../../redux/slices/allergies'
-import { fetchSocialHxByPid } from '../../redux/slices/socialhx'
-import { fetchDiagnosesByPid } from '../../redux/slices/diagnoses'
+import { ResultCreate } from "../results/create";
 
-import { getAge } from '../utils'
-import { fetchLetter } from '../../redux/slices/letters';
-import { unwrapResult } from '@reduxjs/toolkit';
+import { fetchPatient } from "../../redux/slices/patients";
+import { fetchConsultationsByPid } from "../../redux/slices/consultations";
+import { fetchMedicationsByPid } from "../../redux/slices/medications";
+import { fetchComorbiditiesByPid } from "../../redux/slices/comorbidities";
+import { fetchAllergiesByPid } from "../../redux/slices/allergies";
+import { fetchSocialHxByPid } from "../../redux/slices/socialhx";
+import { fetchDiagnosesByPid } from "../../redux/slices/diagnoses";
 
+import { getAge } from "../utils";
+import { fetchLetter } from "../../redux/slices/letters";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 export const PatientView = () => {
-  const {id}        = useParams()
-  const allergies   = useSelector(state => state.allergies.allByPid[id])
-  const tasks       = useSelector(state => state.tasks.allByPid[id])
-  const medications = useSelector(state => state.medications.allByPid[id])
-  const diagnoses   = useSelector(state => state.diagnoses.allByPid[id])
+  const { id } = useParams();
+  const allergies = useSelector((state) => state.allergies.allByPid[id]);
+  const tasks = useSelector((state) => state.tasks.allByPid[id]);
+  const medications = useSelector((state) => state.medications.allByPid[id]);
+  const diagnoses = useSelector((state) => state.diagnoses.allByPid[id]);
   return (
     <Row>
       <Col>
-        <DiagnosisSnippet diagnoses={diagnoses}/>
+        <DiagnosisSnippet diagnoses={diagnoses} />
         <ConsultationSnippet />
         <TaskSnippet tasks={tasks} />
       </Col>
       <Col>
-      <ComorbiditySnippet />  
-        <MedicationSnippet medications={medications} />  
-        <AllergySnippet allergies={allergies} />    
-        <SocialHxSnippet />   
+        <ComorbiditySnippet />
+        <MedicationSnippet medications={medications} />
+        <AllergySnippet allergies={allergies} />
+        <SocialHxSnippet />
       </Col>
     </Row>
-  )
-}
+  );
+};
 
 export const PatientPage = () => {
-  const {id,lid}      = useParams()  
-  const dispatch      = useDispatch()
-  const patient       = useSelector( state => state.patients.activePatient)
-  
-  useEffect( () => {
-    dispatch(fetchPatient(id)).then(unwrapResult)
-    .then( p => {
-      dispatch(fetchConsultationsByPid(p.id))
-      dispatch(fetchMedicationsByPid(p.id))
-      dispatch(fetchAllergiesByPid(p.id))
-      dispatch(fetchComorbiditiesByPid(p.id))
-      dispatch(fetchSocialHxByPid(p.id))
-      dispatch(fetchDiagnosesByPid(p.id))
-      //if(lid)
+  const { id, lid } = useParams();
+  const dispatch = useDispatch();
+  const patient = useSelector((state) => state.patients.activePatient);
+
+  useEffect(() => {
+    dispatch(fetchPatient(id))
+      .then(unwrapResult)
+      .then((p) => {
+        dispatch(fetchConsultationsByPid(p.id));
+        dispatch(fetchMedicationsByPid(p.id));
+        dispatch(fetchAllergiesByPid(p.id));
+        dispatch(fetchComorbiditiesByPid(p.id));
+        dispatch(fetchSocialHxByPid(p.id));
+        dispatch(fetchDiagnosesByPid(p.id));
+        //if(lid)
         //dispatch(fetchLetter(lid))
-    })
-    .catch( e => console.error(e) )
+      })
+      .catch((e) => console.error(e));
+  }, [id]);
 
-  }, [id] )
-
-    
-  return (
-    patient ? (<Container>
+  return patient ? (
+    <>
       <h3>
-      <Link to={`/patients/patient/${patient.id}/update/`}><FontAwesomeIcon icon={faPencilAlt} color="green" /></Link>
-      &nbsp;{patient.fname} {patient.lname} :: {patient.gender} :: {getAge(patient.dob)} years :: {new Date(patient.dob).toLocaleDateString()}
+        <Link to={`/patients/patient/${patient.id}/update/`}>
+          <FontAwesomeIcon icon={faPencilAlt} color="green" />
+        </Link>
+        &nbsp;{patient.fname} {patient.lname} :: {patient.gender} ::{" "}
+        {getAge(patient.dob)} years ::{" "}
+        {new Date(patient.dob).toLocaleDateString()}
       </h3>
       <hr />
       <Route exact path="/patients/patient/:id/diagnoses/create/">
@@ -139,10 +138,14 @@ export const PatientPage = () => {
       <Route exact path="/patients/patient/:id/diagnoses/:did/update/">
         <DiagnosisUpdateContainer />
       </Route>
-      <Route exact path="/patients/patient/:id/diagnoses/:did/investigations/create">
-      </Route>
-      <Route exact path="/patients/patient/:id/diagnoses/:did/investigations/create">
-      </Route>
+      <Route
+        exact
+        path="/patients/patient/:id/diagnoses/:did/investigations/create"
+      ></Route>
+      <Route
+        exact
+        path="/patients/patient/:id/diagnoses/:did/investigations/create"
+      ></Route>
       <Route exact path="/patients/patient/:id/socialhx">
         <SocialHxCreate />
       </Route>
@@ -158,22 +161,40 @@ export const PatientPage = () => {
       <Route exact path="/patients/patient/:id/:cid/:iid/investigation/create/">
         <InvestigationCreateContainer />
       </Route>
-      <Route exact path="/patients/patient/:id/:cid/:iid/investigation/:inid/update/">
+      <Route
+        exact
+        path="/patients/patient/:id/:cid/:iid/investigation/:inid/update/"
+      >
         <InvestigationUpdateContainer />
       </Route>
-      <Route exact path="/patients/patient/:id/consultation/:cid/issue/create/">
-        <IssueCreateContainer />
+      <Route
+        exact
+        path="/patients/patient/:id/consultation/:cid/examination/create/"
+      >
+        <ExaminationCreateContainer />
       </Route>
-      <Route exact path="/patients/patient/:id/consultation/:cid/issue/:iid/update/">
-        <IssueUpdateContainer />
+      <Route
+        exact
+        path="/patients/patient/:id/consultation/:cid/examination/:eid/update/"
+      >
+        <ExaminationUpdateContainer />
       </Route>
-      <Route exact path="/patients/patient/:id/consultation/:cid/letter/create/preview/">
+      <Route
+        exact
+        path="/patients/patient/:id/consultation/:cid/letter/create/preview/"
+      >
         <LetterCreatePreview />
       </Route>
-      <Route exact path="/patients/patient/:id/consultation/:cid/letter/:lid/create/">
+      <Route
+        exact
+        path="/patients/patient/:id/consultation/:cid/letter/:lid/create/"
+      >
         <LetterCreateContainer />
       </Route>
-      <Route exact path="/patients/patient/:id/consultation/:cid/letter/:lid/update/">
+      <Route
+        exact
+        path="/patients/patient/:id/consultation/:cid/letter/:lid/update/"
+      >
         <LetterUpdateContainer />
       </Route>
       <Route exact path="/patients/patient/:id/consultation/:cid/letter/:lid/">
@@ -198,7 +219,7 @@ export const PatientPage = () => {
       <Route exact path="/patients/patient/:id/allergies/create/">
         <AllergyCreateContainer />
       </Route>
-      
+
       <Route exact path="/patients/patient/:id/tasks/:taskid/update/">
         <TaskUpdateContainer />
       </Route>
@@ -207,14 +228,20 @@ export const PatientPage = () => {
       </Route>
 
       <Route exact path="/patients/patient/:id/update/">
-        <PatientUpdate patient={patient}/>
+        <PatientUpdate patient={patient} />
       </Route>
       <Route exact path="/patients/patient/:id/">
-        <PatientView patient={patient}/>
+        <PatientView patient={patient} />
       </Route>
-    </Container>) : (
-      <Container>Patient does not exist</Container>
-    )
-  )
-}
 
+      <Route
+        exact
+        path="/patients/patient/:id/consultation/:cid/results/create"
+      >
+        <ResultCreate />
+      </Route>
+    </>
+  ) : (
+    <Container>Patient does not exist</Container>
+  );
+};

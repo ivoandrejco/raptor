@@ -37,7 +37,7 @@ export const DiagnosisCreate = () => {
   const dispatch        = useDispatch()
   const history         = useHistory()
   
-  initialValues['pid']  = id
+  initialValues['patient']  = id
   const formik          = useFormik({
     initialValues:      initialValues,
     validationSchema:   validationSchema,

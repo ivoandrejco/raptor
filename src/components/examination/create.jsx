@@ -5,80 +5,77 @@ import {unwrapResult} from '@reduxjs/toolkit'
 import {useFormik} from 'formik'
 import * as Yup from 'yup'
 
-//import { createExamination, fetchExamination, updateExamination } from '../../redux/slices/examinations'
-import { GenericForm, getCreateButtons, getUpdateButtons } from '../form'
-import { LayoutForm } from '../forms'
+import { 
+  createExamination, 
+  fetchExamination, 
+  updateExamination, 
+  deleteExamination 
+} from '../../redux/slices/examinations'
+
+import { LayoutForm, getInitialValues } from '../forms'
 import { MsgBox } from '../utils'
 
 // FIELDS
 const fields = {
-  weight:       { type: 'input',  name: 'weight',  label: "Weight", value: 0 },
-  height:       { type: 'input',  name: 'height',  label: "Height", value: 0 },
-  BP:           { type: 'input',  name: 'BP',      label: "Blood pressure", value: ' '},
+  weight:       { type: 'input',  name: 'weight',  label: "Weight", value: null },
+  height:       { type: 'input',  name: 'height',  label: "Height", value: null },
+  BP:           { type: 'input',  name: 'BP',      label: "Blood pressure", value: null},
   pulse:        { type: 'input',  name: 'pulse',   label: "Pulse", value: 72},
   pulse_desc:   { type: 'input',  name: 'pulse_desc',  label: "Pulse Description", value: 'bpm'},
   temp:         { type: 'input',  name: 'temp',  label: "Temperature", value: 36.5},
-  sats:         { type: 'input',  name: 'sats',    label: "Saturations", value: 0},
-  sats_desc:    { type: 'input',  name: 'sats_desc',    label: "Saturations Description", value: ''},
-  examination:  { type: 'textarea', name: 'examination',  label: "Examination", value: `heart sounds are dual with no audible murmurs; chest is clear; abdomen is distended, soft and non-tender with no palpable masses, liver or spleen; no palpable lymphadenopathy; no obvious mucocutaneous lesions, excessive bruising or bleeding; no bone tenderness or joint swellings` },
+  sats:         { type: 'input',  name: 'sats',    label: "Saturations", value: 98},
+  sats_desc:    { type: 'input',  name: 'sats_desc',    label: "Saturations Description", value: 'room air'},
+  findings:     { type: 'textarea', name: 'findings',  label: "Examination", rows:7, value: `heart sounds are dual with no audible murmurs; chest is clear;\n abdomen is distended, soft and non-tender with no palpable masses, liver or spleen; no palpable lymphadenopathy;\n no obvious mucocutaneous lesions, excessive bruising or bleeding; no bone tenderness or joint swellings` },
 }
 
 const layout = [
   [fields.weight,fields.height],
   [fields.BP,fields.pulse,fields.pulse_desc],
   [fields.temp,fields.sats,fields.sats_desc],
-  [fields.examination]
+  [fields.findings]
 ]
 
-const initialValues = {
-  weight: 0,
-  height: 0,
-  BP: ' ',
-  pulse: 72,
-  pulse_desc: 'bpm ...',
-  temp: 36.5,
-  sats: 0,
-  sats_desc: '',
-  examination: `heart sounds are dual with no audible murmurs; chest is clear; abdomen is distended, soft and non-tender with no palpable masses, liver or spleen; no palpable lymphadenopathy; no obvious mucocutaneous lesions, excessive bruising or bleeding; no bone tenderness or joint swellings`
-}
-
 const validationSchema = Yup.object({
-  height:       Yup.number().required(),
-  weight:       Yup.number().required(),
-  examination:  Yup.string().nullable(),
+  height:    Yup.number().required(),
+  weight:    Yup.number().required(),
+  findings:  Yup.string().nullable(),
 })
 
 
 export const ExaminationCreate = () => {
-  const [msg,setMsg]            = useState([])
-  const {id}                    = useParams()
-  const dispatch                = useDispatch()
-  const history                 = useHistory()
-  
+  const [msg,setMsg]  = useState([])
+  const {id,cid}      = useParams()
+  const dispatch      = useDispatch()
+  const history       = useHistory()
+
   const formik        = useFormik({
-    initialValues:   {...initialValues},
-    validationSchema: validationSchema,
+    initialValues:      getInitialValues(fields),
+    validationSchema:   validationSchema,
     enableReinitialize: true,
+    onSubmit: ( values ) => {
+      handleSubmit(values)
+      .then( data => handleClose())
+      .catch( err => setMsg(["danger", `Failed to create new examination: ${JSON.stringify(err.response)}`]))
+    }
   })
 
   // EVENT HANDLERS
-  const handleSubmit = (values) => { 
-    values['pid'] = id; 
-    //return dispatch(createExamination(values)).then(unwrapResult) 
-  }
+  const handleSubmit = values => dispatch(createExamination({consultation:cid,...values})).then(unwrapResult) 
 
-  const handleClose = (href=`/patients/patient/${id}/`) => {
-    history.push(href)
-  }
+  const handleClose = (href=`/patients/patient/${id}/`) => history.push(href)
   
-  // BUTTON onCLICK HANDLERS
-  const buttons       = getCreateButtons()
-  buttons.close.onClick = (e) => handleClose()  
-  buttons.save.onClick = (e) => {
-    handleSubmit(formik.values)
-    .then( data => handleClose())
-    .catch( err => setMsg(["danger", `Failed to create new examination: ${JSON.stringify(err)}`]))
-  }
+  // BUTTONS
+  const buttons       = [
+    {
+      label: 'Close',
+      onClick: handleClose,
+    },
+    {
+      label: 'Save',
+      type: 'submit'
+    }
+  ]
+
 
   return (
     <Fragment>
@@ -98,45 +95,51 @@ export const ExaminationUpdate = () => {
   const history           = useHistory()
 
   useEffect( () => {
-    //dispatch(fetchExamination(eid)).then(unwrapResult())
-    //.then(data => setExamination(data)
-    //.catch(err => setMsg(['danger','Failed to fetch examination'])
-  },eid)
+    dispatch(fetchExamination(eid)).then(unwrapResult)
+    .then( data => setExamination(data) )
+    .catch(err => setMsg(['danger',`Failed to fetch examination: ${JSON.stringify(err.data)}`]))
+  },[eid])
 
   const formik        = useFormik({
-    initialValues:    {...initialValues},
+    initialValues:      {...examination},
     enableReinitialize: true,
-    validationSchema: validationSchema,
+    validationSchema:   validationSchema,
+    onSubmit: values => {
+      handleSubmit(values)
+      .then( data => handleClose() )
+      .catch( err => setMsg(["danger", `Failed to update examination ${new Date(examination.collected_on).toLocaleDateString()} - ${err}`]))
+    }
   })
 
-  formik.setValues(examination)
-
-
   // EVENT HANDLERS
-  //const handleSubmit = () => dispatch(updateExamination(formik.values)).then(unwrapResult) 
-  //const handleClose = (href=`/patients/patient/${examination.pid.id}/`) => history.push(href)
+  const handleSubmit = values => dispatch(updateExamination(values)).then(unwrapResult) 
+  const handleClose  = (href=`/patients/patient/${id}/`) => history.push(href)
+  
 
+  // BUTTONS
+  const buttons       = [
+    {
+      label: 'Close',
+      onClick: handleClose,
+    },
+    {
+      label: 'Delete',
+      onClick: e => dispatch(deleteExamination(examination)).then(unwrapResult)
+                .then(data => handleClose())
+                .catch(e => console.error(e))
+      
+    },
+    {
+      label: 'Update',
+      type: 'submit',
+    }
+  ]
 
-  // BUTTON onCLICK HANDLERS
-  const buttons       = getUpdateButtons()
-  //buttons.close.onClick = (e) => handleClose()  
-
-  //buttons.update_continue.onClick = (e) => {
-    //handleSubmit()
-    //.then( data => setMsg(["success", `The examination ${data.created_on} updated successfully`]) )
-    //.catch( err => setMsg(["danger", `Failed to update examination ${examination.created_on} - ${err}`]))
-  //}
-
-  //buttons.update.onClick = (e) => {
-   // handleSubmit()
-   // .then( data => handleClose() )
-   // .catch( err => setMsg(["danger", `Failed to update examination ${new Date(examination.created_on).toLocaleDateString()} - ${err}`]))
-  //}
   return (
     <Fragment>
       <h4>Update Examination - {examination && new Date(examination.collected_on).toLocaleDateString()}</h4>
       <MsgBox msg={msg} />
-      <GenericForm formik={formik} fields={fields} buttons={buttons} />
+      <LayoutForm formik={formik} fields={layout} buttons={buttons} />
     </Fragment>
   )
 }

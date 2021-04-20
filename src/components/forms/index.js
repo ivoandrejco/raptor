@@ -1,248 +1,234 @@
+import { Fragment } from "react";
+import { Form, Alert, Col, Button } from "react-bootstrap";
 
-import {Fragment} from 'react'
-import {Form, Alert,Col, Button, Collapse } from 'react-bootstrap'
-import CKEditor from 'ckeditor4-react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
-export const getCreateButtons = () => ({
-  save: {
-    label: 'Save',
-    onClick: null,
-  },
-  save_close: {
-    label: 'Save / Close',
-    onClick: null,
-  },
-  save_continue:{
-    label: 'Save / Continue',
-    onClick: null,
-  },
-  close: {
-    label: 'Close',
-    onClick: null,
+export const getInitialValues = (fields) => {
+  const initVals = {};
+  if (fields instanceof Array) {
+    for (let i = 0; i < fields.length; i++)
+      initVals[fields[i].name] = fields[i].value;
+  } else if (fields instanceof Object) {
+    for (var key in fields) initVals[key] = fields[key].value;
   }
-  })  
+  return initVals;
+};
 
-export const getUpdateButtons = () => ({
-  update: {
-    label: 'Update',
-    onClick: null,
-  },
-  update_close: {
-    label: 'Update / Close',
-    onClick: null,
-  },
-  update_continue: {
-    label: 'Update / Continue',
-    onClick: null,
-  },
-  close: {
-    label: 'Close',
-    onClick: null,
-  }
-})   
+const getValue = (val) => {
+  if (val) return val;
+  else return " ";
+};
 
-const getLabel = field => <Form.Label htmlFor={field.name}>{field.label}</Form.Label>
+const getLabel = (field) => (
+  <Form.Label htmlFor={field.name}>{field.label}</Form.Label>
+);
+
+const getError = (field, formik) => {
+  if (formik && formik.errors[field.name] && formik.touched[field.name])
+    return <Alert variant="danger">{formik.errors[field.name]}</Alert>;
+};
 
 const getTextArea = (field, formik) => (
   <>
-  { getLabel(field) }
-    <Form.Control 
+    {getLabel(field)}
+    <Form.Control
       id={field.name}
       name={field.name}
-      defaultValue={field.value}
-      as={field.type} 
+      value={formik && formik.values[field.name]}
+      as={field.type}
+      rows={field.rows && field.rows}
+      onChange={formik && formik.handleChange}
     />
+    {getError(field, formik)}
   </>
-)
-const getInput = (field,formik) => (
+);
+
+const getFile = (field, formik) => (
   <>
-    <Form.Label htmlFor={field.name}>{field.label}</Form.Label>
-    <Form.Control 
+    {getLabel(field)}
+    <Form.File
+      id={field.name}
+      label={field.label}
+      onChange={formik.handleChange}
+      custom
+    />
+    {getError(field, formik)}
+  </>
+);
+
+const getInput = (field, formik) => (
+  <>
+    {getLabel(field)}
+    <Form.Control
       id={field.name}
       name={field.name}
-      defaultValue={field.value}
-      as={field.type} 
+      value={formik && formik.values[field.name]}
+      as={field.type}
+      onChange={formik && formik.handleChange}
+      placeholder={field.placeholder}
     />
+    {getError(field, formik)}
   </>
-)
+);
 
-const getField = field => {
-  switch(field.type){
-    case 'input':
-      return getInput(field)
-    case 'textarea':
-      return getTextArea(field)
+const getSelect = (field, formik) => (
+  <>
+    {getLabel(field)}
+    <Form.Control
+      id={field.name}
+      name={field.name}
+      value={formik && formik.values[field.name]}
+      as={field.type}
+      children={field.options.map((v, i) => (
+        <option key={i} value={v.value}>
+          {v.name}
+        </option>
+      ))}
+      onChange={formik && formik.handleChange}
+    />
+    {getError(field, formik)}
+  </>
+);
+
+const getField = (field, formik) => {
+  switch (field.type) {
+    case "input":
+      return getInput(field, formik);
+    case "textarea":
+      return getTextArea(field, formik);
+    case "select":
+      return getSelect(field, formik);
+    case "file":
+      return getFile(field, formik);
+    default:
+      return null;
   }
-}
+};
 
-export const LayoutForm = ({fields}) => {
-  if(!fields instanceof Array){
-    console.error(`Wrong argument - expected instance of Array - received ...`)
-    return (<div>Wrong argument</div>)
+const getButton = (btn, i) => (
+  <Fragment key={i}>
+    <Button
+      key={i}
+      type={btn.type ? btn.type : null}
+      onClick={btn.onClick ? (e) => btn.onClick() : null}
+      block={btn.block}
+      variant={btn.variant}
+    >
+      {btn.label}
+    </Button>
+    &nbsp;
+  </Fragment>
+);
+
+export const LayoutForm = ({ fields, buttons, formik }) => {
+  if (!fields instanceof Array) {
+    console.error(`Wrong argument - expected instance of Array - received ...`);
+    return <div>Wrong argument</div>;
   }
 
-  return (
-    fields.map( (row,i) => 
-      
-        <Form.Row key={i}>
-          {
-            row.map( (field,j) => {
-              return (
-                <Form.Group as={Col} key={j}>
-                { getField(field) }
-                </Form.Group>
-              )
-            })
-          }
-        </Form.Row>
-    )
-  )
-}
-
-export const GenericField = (props) => {
-
-  if( ["radio","checkbox"].includes(props.type))
-    return (<Form.Check {...props}/>)
-  if( ["textarea","input","select"].includes(props.type) )
-    return (<Form.Control {...props}/>)
-}
-
-export const GenericForm = ({formik,fields,buttons,children,iVals}) => {
-  const fKeys        = typeof fields  === 'object' ? Reflect.ownKeys(fields) : null
-  const bKeys        = typeof buttons === 'object' ? Reflect.ownKeys(buttons) : null
-  
   return (
     <Form onSubmit={formik.handleSubmit}>
-      {children}
-      { fKeys && fKeys.map ( (key,i) => {
-        
-        return (    
-          <Form.Group key={i}>
-         
-            { (fields[key].type === 'checkbox' || fields[key].type === 'radio') && 
-            <Form.Check
-              id={key} name={key}
-              type={fields[key].type} 
-              onChange={fields[key].onChange?fields[key].onChange:formik.handleChange}
-              value={formik.values[key]}
-              {...fields[key]}
-              checked={formik.values[key]}
-            />    
-            }
-            { (fields[key].type === 'input' || fields[key].type === 'textarea' ||  fields[key].type === 'select') &&
-              <Fragment>
-                <Form.Label key={i} htmlFor={key} >{fields[key].label}</Form.Label>
-                <Form.Control 
-                  {...fields[key]}
-                  id={key} name={key}
-                  as={fields[key].type} 
-                  rows={fields[key].rows?fields[key].rows:"5"}
-                  children={fields[key].options && fields[key].options.map( (v,i) => <option key={i} value={v.value}>{v.name}</option>) } 
-                  onChange={fields[key].onChange?(e) => {fields[key].onChange(e);formik.handleChange(e)} : formik.handleChange}
-                  value={formik.values && formik.values[key]?formik.values[key]:' '}
-                  
-                />    
-              </Fragment>
-            }
-            
-            { fields[key].type === 'editor' &&
-              <Fragment>
-                <Form.Label key={i} htmlFor={key} >{fields[key].label}</Form.Label>
-                <CKEditor
-                  id={key} name={key}
-                  type="classic"
-                  data={formik.values[key]}
-                  onChange={fields[key].onChange}
-                  config={{
-                    
-
-                  }}
-                />    
-              </Fragment>
-            }
-            
-            {formik.errors[key] && <Alert variant="danger">{formik.errors[key]}</Alert>}
-          </Form.Group>      
-                   
-        ) 
-      })}
-      { bKeys && bKeys.map( (bkey,i) => {
-          if(buttons[bkey].onClick !== null || buttons[bkey].type==="submit") {
-            return (<Fragment key={i}><Button type={buttons[bkey].type?buttons[bkey].type:null} id={bkey} onClick={buttons[bkey].onClick}>{buttons[bkey].label}</Button>{' '}</Fragment>)
-          }
-            
-        }
-      )}
-      
+      {fields.map((row, i) => (
+        <Form.Row key={i}>
+          {row.map((field, j) => {
+            return (
+              <Form.Group as={Col} key={j}>
+                {getField(field, formik)}
+              </Form.Group>
+            );
+          })}
+        </Form.Row>
+      ))}
+      <Form.Row>
+        {buttons && buttons.map((btn, i) => getButton(btn, i))}
+      </Form.Row>
     </Form>
-  )
-}
+  );
+};
 
-export const GenericFormGroup = ({formik,fields,buttons,children}) => {
-  const fKeys        = typeof fields  === 'object' ? Reflect.ownKeys(fields) : null
-  const bKeys        = typeof buttons === 'object' ? Reflect.ownKeys(buttons) : null
-  
+export const GenericForm = ({ formik, fields, buttons }) => {
+  const fKeys = typeof fields === "object" ? Reflect.ownKeys(fields) : null;
+
   return (
-    <>
-      { fKeys && fKeys.map ( (key,i) => {
-        
-        return (    
-          <Form.Group key={i}>
-         
-            { (fields[key].type === 'checkbox' || fields[key].type === 'radio') && 
-            <Form.Check
-              id={key} name={key}
-              type={fields[key].type} 
-              onChange={fields[key].onChange?fields[key].onChange:formik.handleChange}
-              value={formik.values[key]}
-              {...fields[key]}
-              checked={formik.values[key]}
-            />    
-            }
-            { (fields[key].type === 'input' || fields[key].type === 'textarea' ||  fields[key].type === 'select') &&
-              <Fragment>
-                <Form.Label key={i} htmlFor={key} >{fields[key].label}</Form.Label>
-                <Form.Control 
-                  {...fields[key]}
-                  id={key} name={key}
-                  as={fields[key].type} 
-                  rows={fields[key].rows?fields[key].rows:5}
-                  children={fields[key].options && fields[key].options.map( (v,i) => <option key={i} value={v.value}>{v.name}</option>) } 
-                  onChange={fields[key].onChange?(e) => {fields[key].onChange(e);formik.handleChange(e)} : formik.handleChange}
-                  value={formik.values[key]}
-                  
-                />    
-              </Fragment>
-            }
-            
-            { fields[key].type === 'editor' &&
-              <Fragment>
-                <Form.Label key={i} htmlFor={key} >{fields[key].label}</Form.Label>
-                <CKEditor
-                  id={key} name={key}
-                  type="classic"
-                  data={formik.values[key]}
-                  onChange={fields[key].onChange}
-                  config={{
-                    
+    <Form onSubmit={formik.handleSubmit}>
+      <Form.Row>
+        {fKeys.map((key, i) => {
+          return (
+            <Form.Group key={i}>{getField(fields[key], formik)}</Form.Group>
+          );
+        })}
+      </Form.Row>
+      {buttons && buttons.map((btn, i) => getButton(btn, i))}
+    </Form>
+  );
+};
 
-                  }}
-                />    
-              </Fragment>
-            }
-            
-            {formik.errors[key] && <Alert variant="danger">{formik.errors[key]}</Alert>}
-          </Form.Group>      
-                   
-        ) 
-      })}
-      { bKeys && bKeys.map( (bkey,i) => {
-          if(buttons[bkey].onClick !== null || buttons[bkey].type==="submit") {
-            return (<Fragment key={i}><Button type={buttons[bkey].type?buttons[bkey].type:null} id={bkey} onClick={buttons[bkey].onClick}>{buttons[bkey].label}</Button>{' '}</Fragment>)
-          }
-            
-        }
-      )}
-  </>
-  )
-}
+export const SchemaForm = ({ formik, schema, buttons, collected }) => {
+  return (
+    <Form id={schema.id} onSubmit={formik.handleSubmit} key={schema.id}>
+      <Form.Row>
+        {schema &&
+          schema.json.map((f, i) => {
+            return (
+              <Col key={i}>
+                <Form.Group key={f.name}>
+                  {getField(f, formik)}
+                  {collected && (
+                    <Form.Control
+                      as="input"
+                      placeholder="Collected"
+                      name={`${f.name}_collected`}
+                      defaultValue=""
+                      value={
+                        formik.values[`${f.name}_collected`]
+                          ? formik.values[`${f.name}_collected`]
+                          : ""
+                      }
+                      onChange={formik.handleChange}
+                    />
+                  )}
+                </Form.Group>
+              </Col>
+            );
+          })}
+      </Form.Row>
+      <Form.Row>
+        {buttons && buttons.map((btn, i) => getButton(btn, i))}
+      </Form.Row>
+    </Form>
+  );
+};
+export const PreviewForm = ({ fields, handleUpdate, handleDelete }) => {
+  if (!fields instanceof Array && !fields[0].label) {
+    console.error(`Wrong argument - expected instance of Array - received ...`);
+    return <div>Wrong argument</div>;
+  }
+
+  return (
+    <Fragment>
+      {fields &&
+        fields.map((f, i) => {
+          return (
+            <Form.Group key={i}>
+              {handleUpdate && (
+                <FontAwesomeIcon
+                  icon={faPencilAlt}
+                  color="green"
+                  onClick={(e) => handleUpdate(f)}
+                />
+              )}{" "}
+              {handleDelete && (
+                <FontAwesomeIcon
+                  icon={faTrashAlt}
+                  color="red"
+                  onClick={(e) => handleDelete(f)}
+                />
+              )}{" "}
+              {getField(f)}
+            </Form.Group>
+          );
+        })}
+    </Fragment>
+  );
+};

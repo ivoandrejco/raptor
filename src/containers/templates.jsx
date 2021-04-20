@@ -1,26 +1,16 @@
-import { Fragment, useEffect } from 'react'
-import { Route } from 'react-router-dom'
+import { Fragment } from "react";
+import { Route } from "react-router-dom";
 
-import { 
-  TemplateList,
-  TemplateCreateContainer,
-} from '../components/templates'
+import { TemplateList, TemplateCreateContainer } from "../components/templates";
 
-import { 
-  TemplateIssueCreate, 
-  TemplateIssueUpdate, 
+import {
+  TemplateIssueUpdate,
   TemplateIssueList,
-  TemplateCreate,
-} from '../components/templates/issues'
+} from "../components/templates/issues";
 
-import { 
-  TemplateInvestigationCreate,
-  TemplateInvestigationUpdate
-} from '../components/templates/investigations'
-
+import { TemplateInvestigationUpdate } from "../components/templates/investigations";
 
 export const TemplatesContainer = () => {
-
   return (
     <Fragment>
       <Route exact path="/templates/create/">
@@ -46,7 +36,7 @@ export const TemplatesContainer = () => {
         <TemplateInvestigationUpdate />
       </Route>
     </Fragment>
-  )
-}
+  );
+};
 
-export default TemplatesContainer
+export default TemplatesContainer;

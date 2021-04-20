@@ -33,6 +33,19 @@ export const fetchProviderNumbers = createAsyncThunk(
   }
 )
 
+export const fetchProviders = createAsyncThunk(
+  'billings/fetchProviderNumbers',
+  async (arg,{rejectWithValue}) => {
+    try {
+      const resp = await pnClient.fetchAll(); 
+      return resp.data
+    } catch(e) {
+      rejectWithValue(e.response.data)
+    }
+  }
+)
+
+
 export const createClaim = createAsyncThunk(
   'billings/createClaim',
   async (arg,{rejectWithValue}) => {
@@ -80,6 +93,7 @@ const billingsSlice = createSlice({
     claims: [],
     claimsPaid: [],
     providerNumbers: [],
+    providers: [],
     claimsPulled: false,
     claimsPaidPulled: false,
     providerNumbersPulled: false,
@@ -107,6 +121,12 @@ const billingsSlice = createSlice({
     },
     [fetchProviderNumbers.rejected]: (state,action) => {
       console.log(`fetchProviderNumbers rejected: ${JSON.stringify(action.error)}`)
+    },
+    [fetchProviders.fulfilled]: (state,{payload}) => {
+      state.providers = payload.map( p => ({value: p.id, name: `${p.doctor} ${p.practice}`}) )
+    },
+    [fetchProviders.rejected]: (state,{payload}) => {
+      console.error(`fetchProviders rejected: ${JSON.stringify(payload.response.data)}`)
     },
     [createClaim.fulfilled]: (state,{payload}) => {
       state.claims.unshift(payload)

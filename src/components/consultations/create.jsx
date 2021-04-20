@@ -1,32 +1,38 @@
 
-import {Fragment, useEffect, useState} from 'react'
-import {useHistory, useParams} from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
-import {unwrapResult} from '@reduxjs/toolkit'
-import {useFormik} from 'formik'
+import { Fragment, useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { unwrapResult } from '@reduxjs/toolkit'
+import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
-import { createConsultation, fetchConsultation, updateConsultation } from '../../redux/slices/consultations'
-import { GenericForm, getCreateButtons, getUpdateButtons } from '../form'
+import { 
+  fetchConsultation, 
+  createConsultation, 
+  updateConsultation,
+  deleteConsultation
+} from '../../redux/slices/consultations'
+import { 
+  fetchProviders 
+} from '../../redux/slices/billings'
+
+import { LayoutForm, getInitialValues } from '../forms'
 import { MsgBox } from '../utils'
-import { fetchProviderNumbers } from '../../redux/slices/billings'
 
 // FIELDS
 const fields = {
-  code:       { type: 'input',    label: "Code", value: " "},
-  provider:   { type: 'select',   label: 'Provider', options: [{value:" ",name: "Select Provider"}]},
-  history:    { type: 'textarea', label: "History", value: " " },
-  impression: { type: 'textarea', label: "Impression", value: " " },
-  plan:       { type: 'textarea', label: "Plan", value: " " },
+  code:       { type: 'input',   name: 'code', label: "Code", value: 110 },
+  provider:   { type: 'select',  name: 'provider', label: 'Provider', value: ' ', options: []},
+  history:    { type: 'textarea', name: 'history', rows: 6,label: "History", value: null },
+  impression: { type: 'textarea', name: 'impression', rows: 6, label: "Impression", value: null },
+  plan:       { type: 'textarea', name: 'plan', rows: 6, label: "Plan", value: null },
 }
 
-const initialValues = {
-  code:       110, 
-  provider:   ' ',
-  history:    ' ',
-  impression: ' ',
-  plan:       '',
-}
+const _layout = [
+  [fields.code,fields.provider],
+  [fields.history,fields.impression],
+  [fields.plan]
+]
 
 const validationSchema = Yup.object({
   code:       Yup.number().required(),
@@ -35,130 +41,117 @@ const validationSchema = Yup.object({
   plan:       Yup.string().required(),
 })
 
+const formatProvider = p => ( {value:p.id, name: `${p.doctor} ${p.practice}`} )
+const  setProviders = (data) => {
+  fields.provider.options = [{value:' ',name:'Select Provider'}]
+    .concat(data.map( p => formatProvider(p) )) 
+}
 
 export const ConsultationCreate = () => {
-  const [_fields,setFields]      = useState([])
+  const [layout,setLayout]      = useState(null)
   const [msg,setMsg]            = useState([])
   const {id}                    = useParams()
   const dispatch                = useDispatch()
   const history                 = useHistory()
   
-  useEffect( () => {
-    dispatch(fetchProviderNumbers()).then(unwrapResult)
-    .then( data => {
-      const options  = [{value:" ",name:"Select Provider"}]
-      const pns = data.map( p => ({ value: p.id,name: `${p.doctor} ${p.practice}`}) )
-      fields.provider.options = options.concat(pns)
-      setFields(fields)}
-    )
-    .catch( e => console.error(JSON.stringify(e)))
-  }, [id])
+  useEffect( () => 
+
+    dispatch(fetchProviders()).then(unwrapResult)
+    .then( data => { setProviders(data); setLayout(_layout) } )
+    .catch( e => console.error( JSON.stringify(e) ))
+      
+  , [dispatch,id] )
 
   const formik        = useFormik({
-    initialValues:      {...initialValues},
-    validationSchema:   validationSchema,
     enableReinitialize: true,
+    validationSchema:   validationSchema,
+    initialValues:      {patient: id,  ...getInitialValues(fields)},
+    onSubmit:           values => dispatch(createConsultation(values)).then(unwrapResult) 
+                        .then( data => handleClose() )
+                        .catch( err => setMsg(["danger", `Failed to create new consultation: ${JSON.stringify(err)}`]))
   })
 
   // EVENT HANDLERS
-  const handleSubmit = (values) => { values['patient'] = id; return dispatch(createConsultation(values)).then(unwrapResult) }
-  const handleClose = (href=`/patients/patient/${id}/`) => {
-    history.push(href)
-  }
-  
-  // BUTTON onCLICK HANDLERS
-  const buttons       = getCreateButtons()
-  buttons.close.onClick = (e) => handleClose()  
-  buttons.save.onClick = (e) => {
-    handleSubmit(formik.values)
-    .then( data => handleClose())
-    .catch( err => setMsg(["danger", `Failed to create new consultation: ${JSON.stringify(err)}`]))
-  }
+  const handleClose = (href=`/patients/patient/${id}/`) => history.push(href)
 
- 
- // const _fields = {...fields}
- // _fields.provider.options.push(providers && providers.map( p => ({ value: p.id,name: `${p.doctor} ${p.practice}`}) ))
-  console.log(JSON.stringify(_fields))
   
-  return (
+  // BUTTONs
+  const buttons = [
+    {
+      label: 'Save',
+      type: 'submit',
+    },
+    {
+      label: 'Close',
+      onClick: handleClose
+    },
+  ]
+ 
+  return (layout && 
     <Fragment>
       <h5>New Consultation</h5>
       <MsgBox msg={msg} />
-      <GenericForm formik={formik} fields={_fields} buttons={buttons} />
+      <LayoutForm buttons={buttons} formik={formik} fields={layout} />
     </Fragment>  
   )
 }
 
 export const ConsultationUpdate = () => {
+  const [layout,setLayout]      = useState(null)
   const [consultation,
-    setConsultation]      = useState(null)
+    setConsultation]            = useState(null)
+  const [msg,setMsg]            = useState([])
+  const {id,cid}                = useParams()
+  const dispatch                = useDispatch()
+  const history                 = useHistory()
 
-  const [msg,setMsg]      = useState([])
-  const {id,cid}          = useParams()
-  const dispatch          = useDispatch()
-  const history           = useHistory()
-  //const selected      = useSelector( state => state.consultations.activeConsultation)
-
-  const getInitialValues = () => {
-    if(!consultation)
-    return initialValues
-
-    const values = {}
-    for(const k in initialValues) {
-      values[k] = consultation[k]
-    }
-    values['id'] = cid
-    values['pid'] = id
-    values['provider'] = consultation.provider.id
-    return values
-  }
   
-  const formik        = useFormik({
-    initialValues:    getInitialValues(),
-    enableReinitialize: true,
-    validationSchema: validationSchema,
-  })
-
   useEffect( () => {
-    dispatch(fetchProviderNumbers()).then(unwrapResult)
-    .then( data => {
-      const options  = [{value:" ",name:"Select Provider"}]
-      const pns = data.map( p => ({ value: p.id,name: `${p.doctor} ${p.practice}`}) )
-      fields.provider.options = options.concat(pns)
-    })
-    .catch( e => console.error(JSON.stringify(e)))
+
+    dispatch(fetchProviders()).then(unwrapResult)
+    .then( data => { setProviders(data); setLayout(_layout)} )
+    .catch( e => console.error(JSON.stringify(e)) )
 
     dispatch(fetchConsultation(cid)).then(unwrapResult)
     .then( data => setConsultation(data) )
     .catch( e => console.error(JSON.stringify(e)))
-  }, [])
+
+  }, [dispatch,id,cid])
+
+  const formik        = useFormik({
+    initialValues: { ...consultation,provider: consultation && consultation.provider.id }, 
+    validationSchema: validationSchema,
+    enableReinitialize: true,
+    onSubmit: values => dispatch(updateConsultation(values)).then(unwrapResult)
+              .then( data => handleClose() )
+              .catch( err => setMsg(["danger", `Failed to update consultation ${new Date(consultation.created_on).toLocaleDateString()} - ${err}`]))
+  })
 
   // EVENT HANDLERS
-  const handleSubmit = () => dispatch(updateConsultation(formik.values)).then(unwrapResult) 
-  const handleClose = (href=`/patients/patient/${consultation.pid.id}/`) => history.push(href)
+  const handleClose = (href=`/patients/patient/${id}/`) => history.push(href)
 
+  const buttons = [
+    {
+      label: 'Update',
+      type: 'submit'
+    },
+    {
+      label: 'Delete',
+      onClick: e => dispatch(deleteConsultation(consultation)).then(unwrapResult)
+        .then( d => handleClose() )
+        .catch( e => console.error(e) )
+    },
+    {
+      label: 'Close',
+      onClick: handleClose
+    }
+  ]
 
-  // BUTTON onCLICK HANDLERS
-  const buttons       = getUpdateButtons()
-  buttons.close.onClick = (e) => handleClose()  
-
-  buttons.update_continue.onClick = (e) => {
-    handleSubmit()
-    .then( data => setMsg(["success", `The consultation ${data.created_on} updated successfully`]) )
-    .catch( err => setMsg(["danger", `Failed to update consultation ${consultation.created_on} - ${err}`]))
-  }
-
-  buttons.update.onClick = (e) => {
-    handleSubmit()
-    .then( data => handleClose() )
-    .catch( err => setMsg(["danger", `Failed to update consultation ${new Date(consultation.created_on).toLocaleDateString()} - ${err}`]))
-  }
-  console.log(JSON.stringify(formik.values))
-  return (
+  return ( layout && 
     <Fragment>
       <h4>Update Consultation - {consultation && new Date(consultation.created_on).toLocaleDateString()}</h4>
       <MsgBox msg={msg} />
-      <GenericForm formik={formik} fields={fields} buttons={buttons} />
+      <LayoutForm formik={formik} fields={layout} buttons={buttons} />
     </Fragment>
   )
 }
